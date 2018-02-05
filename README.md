@@ -1,13 +1,13 @@
-#Introduction to Programming
+# Introduction to Programming
 
-##Practical 9: Abstract Classes 
+## Practical 9: Abstract Classes 
 
 ## Instructions
 
 This week the practical focuses on inheritance, class hierarchy and in particular abstract classes
 in the context of a more complex program the fox-rabbit simulator. You will need to download the Foxes and Rabbits code as a starting point 
 
-###Level 1:
+### Level 1:
 
 1. __Implementation.__ The Foxes-and-Rabbits simulation: using the code provided 
 create a class _Wolf_ that hunts foxes and rabbits.
@@ -57,7 +57,7 @@ private static final int MAX_LITTER_SIZE = 2;
    
    Run the simulation and observe what happens to the foxes and the rabbits.
 
-###Level 2
+### Level 2
 
 __Implementation.__ The Foxes-and-Rabbits simulation: Implement a class _Hunter_, modifying your design
 from level 1 accordingly. A hunter does not breed and becomes inactive after a random period of
@@ -66,7 +66,7 @@ To do this use the concept of an abstract class introduced in the lecture to imp
 abstract class as shown in the lecture that is a suitable super class for all the actors (animal and
 human) in the simulation.
 
-###Level 3
+### Level 3
 
 __Investigation.__ You can read more about emergent behaviour and swarming/flocking in agent based
 systems here:
