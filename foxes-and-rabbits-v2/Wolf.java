@@ -3,45 +3,47 @@ import java.util.Iterator;
 import java.util.Random;
 
 /**
- * A simple model of a fox.
- * Foxes age, move, eat rabbits, and die.
+ * A simple model of a wolf.
+ * wolfes age, move, eat rabbits, and die.
  * 
  * @author David J. Barnes and Michael Kolling
  * @version 2008.03.30
  */
-public class Fox extends Animal
+public class Wolf extends Animal
 {
-    // Characteristics shared by all foxes (static fields).
+    // Characteristics shared by all wolfes (static fields).
     
-    // The age at which a fox can start to breed.
+    // The age at which a wolf can start to breed.
     private static final int BREEDING_AGE = 10;
-    // The age to which a fox can live.
-    private static final int MAX_AGE = 150;
-    // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.35;
+    // The age to which a wolf can live.
+    private static final int MAX_AGE = 40;
+    // The likelihood of a wolf breeding.
+    private static final double BREEDING_PROBABILITY = 0.05;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 5;
+    private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single rabbit. In effect, this is the
-    // number of steps a fox can go before it has to eat again.
+    // number of steps a wolf can go before it has to eat again.
     private static final int RABBIT_FOOD_VALUE = 7;
+    private static final int FOX_FOOD_VALUE = 7;
+    // The food value of a single 
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
     // Individual characteristics (instance fields).
-    // The fox's age.
+    // The wolf's age.
     private int age;
-    // The fox's food level, which is increased by eating rabbits.
+    // The wolf's food level, which is increased by eating rabbits.
     private int foodLevel;
 
     /**
-     * Create a fox. A fox can be created as a new born (age zero
+     * Create a wolf. A wolf can be created as a new born (age zero
      * and not hungry) or with a random age and food level.
      * 
-     * @param randomAge If true, the fox will have random age and hunger level.
+     * @param randomAge If true, the wolf will have random age and hunger level.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Fox(boolean randomAge, Field field, Location location)
+    public Wolf(boolean randomAge, Field field, Location location)
     {
         super(field, location);
         if(randomAge) {
@@ -55,18 +57,18 @@ public class Fox extends Animal
     }
     
     /**
-     * This is what the fox does most of the time: it hunts for
+     * This is what the wolf does most of the time: it hunts for
      * rabbits. In the process, it might breed, die of hunger,
      * or die of old age.
      * @param field The field currently occupied.
-     * @param newFoxes A list to add newly born foxes to.
+     * @param newwolfes A list to add newly born wolfes to.
      */
-    public void act(List<Actor> newFoxes)
+    public void act(List<Animal> newwolfes)
     {
         incrementAge();
         incrementHunger();
         if(isAlive()) {
-            giveBirth(newFoxes);            
+            giveBirth(newwolfes);            
             // Move towards a source of food if found.
             Location location = getLocation();
             Location newLocation = findFood(location);
@@ -86,7 +88,7 @@ public class Fox extends Animal
     }
 
     /**
-     * Increase the age. This could result in the fox's death.
+     * Increase the age. This could result in the wolf's death.
      */
     private void incrementAge()
     {
@@ -97,7 +99,7 @@ public class Fox extends Animal
     }
     
     /**
-     * Make this fox more hungry. This could result in the fox's death.
+     * Make this wolf more hungry. This could result in the wolf's death.
      */
     private void incrementHunger()
     {
@@ -108,7 +110,7 @@ public class Fox extends Animal
     }
     
     /**
-     * Tell the fox to look for rabbits adjacent to its current location.
+     * Tell the wolf to look for rabbits adjacent to its current location.
      * Only the first live rabbit is eaten.
      * @param location Where in the field it is located.
      * @return Where food was found, or null if it wasn't.
@@ -130,26 +132,35 @@ public class Fox extends Animal
                     return where;
                 }
             }
+            if(animal instanceof Fox) {
+                Fox fox = (Fox) animal;
+                if(fox.isAlive()) { 
+                    fox.setDead();
+                    foodLevel = FOX_FOOD_VALUE;
+                    // Remove the dead rabbit from the field.
+                    return where;
+                }
+            }
         }
         return null;
     }
     
     /**
-     * Check whether or not this fox is to give birth at this step.
+     * Check whether or not this wolf is to give birth at this step.
      * New births will be made into free adjacent locations.
-     * @param newFoxes A list to add newly born foxes to.
+     * @param newwolfes A list to add newly born wolfes to.
      */
-    private void giveBirth(List<Actor> newFoxes)
+    private void giveBirth(List<Animal> newwolfes)
     {
-        // New foxes are born into adjacent locations.
+        // New wolfes are born into adjacent locations.
         // Get a list of adjacent free locations.
         Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Fox young = new Fox(false, field, loc);
-            newFoxes.add(young);
+            Wolf young = new Wolf(false, field, loc);
+            newwolfes.add(young);
         }
     }
         
@@ -168,7 +179,7 @@ public class Fox extends Animal
     }
 
     /**
-     * A fox can breed if it has reached the breeding age.
+     * A wolf can breed if it has reached the breeding age.
      */
     private boolean canBreed()
     {
