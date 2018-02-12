@@ -29,6 +29,7 @@ public abstract class Animal extends Actor
      * Check whether the animal is alive or not.
      * @return true if the animal is still alive.
      */
+    @Override
     public boolean isAlive()
     {
         return alive;

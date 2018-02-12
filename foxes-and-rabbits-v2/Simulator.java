@@ -24,9 +24,10 @@ public class Simulator
     private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
     // The probability that a wolf will be created in any given grid position.
     private static final double WOLF_CREATION_PROBABILITY = 0.02; 
+    private static final double HUNTER_CREATION_PROBABILITY = 0.01;
 
     // List of animals in the field.
-    private List<Animal> animals;
+    private List<Actor> animals;
     // The current state of the field.
     private Field field;
     // The current step of the simulation.
@@ -56,7 +57,7 @@ public class Simulator
             width = DEFAULT_WIDTH;
         }
         
-        animals = new ArrayList<Animal>();
+        animals = new ArrayList<Actor>();
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.
@@ -64,6 +65,7 @@ public class Simulator
         view.setColor(Rabbit.class, Color.green);
         view.setColor(Fox.class, Color.red);
         view.setColor(Wolf.class, Color.black);
+        view.setColor(Hunter.class, Color.orange);
         
         // Setup a valid starting point.
         reset();
@@ -100,10 +102,10 @@ public class Simulator
         step++;
 
         // Provide space for newborn animals.
-        List<Animal> newAnimals = new ArrayList<Animal>();        
+        List<Actor> newAnimals = new ArrayList<Actor>();        
         // Let all rabbits act.
-        for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
-            Animal animal = it.next();
+        for(Iterator<Actor> it = animals.iterator(); it.hasNext(); ) {
+            Actor animal = it.next();
             animal.act(newAnimals);
             if(! animal.isAlive()) {
                 it.remove();
@@ -152,6 +154,11 @@ public class Simulator
                     Location location = new Location(row, col);
                     Wolf wolf = new Wolf(true, field, location);
                     animals.add(wolf);
+                }
+                else if(rand.nextDouble() <= HUNTER_CREATION_PROBABILITY){
+                    Location location = new Location(row, col);
+                    Hunter hunter = new Hunter(field, location);
+                    animals.add(hunter);
                 }
                 // else leave the location empty.
             }

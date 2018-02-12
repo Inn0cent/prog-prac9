@@ -63,4 +63,9 @@ public abstract class Actor
         location = newLocation;
         field.place(this, newLocation);
     }
+    
+    public boolean isAlive()
+    {
+        return true;
+    }
 }

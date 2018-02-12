@@ -1,13 +1,15 @@
 #BlueJ class context
-comment0.params=field\ location
-comment0.target=Animal(Field,\ Location)
-comment0.text=\r\n\ Create\ a\ new\ animal\ at\ location\ in\ field.\r\n\ \r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ location\ The\ location\ within\ the\ field.\r\n
-comment1.params=newActor
-comment1.target=void\ act(java.util.List)
-comment2.params=
-comment2.target=boolean\ isAlive()
-comment2.text=\r\n\ Check\ whether\ the\ animal\ is\ alive\ or\ not.\r\n\ @return\ true\ if\ the\ animal\ is\ still\ alive.\r\n
+comment0.target=Animal
+comment0.text=\r\n\ A\ class\ representing\ shared\ characteristics\ of\ animals.\r\n\ \r\n\ @author\ David\ J.\ Barnes\ and\ Michael\ Kolling\r\n\ @version\ 2008.03.30\r\n
+comment1.params=field\ location
+comment1.target=Animal(Field,\ Location)
+comment1.text=\r\n\ Create\ a\ new\ animal\ at\ location\ in\ field.\r\n\ \r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ location\ The\ location\ within\ the\ field.\r\n
+comment2.params=newActor
+comment2.target=void\ act(java.util.List)
 comment3.params=
-comment3.target=void\ setDead()
-comment3.text=\r\n\ Indicate\ that\ the\ animal\ is\ no\ longer\ alive.\r\n\ It\ is\ removed\ from\ the\ field.\r\n
-numComments=4
+comment3.target=boolean\ isAlive()
+comment3.text=\r\n\ Check\ whether\ the\ animal\ is\ alive\ or\ not.\r\n\ @return\ true\ if\ the\ animal\ is\ still\ alive.\r\n
+comment4.params=
+comment4.target=void\ setDead()
+comment4.text=\r\n\ Indicate\ that\ the\ animal\ is\ no\ longer\ alive.\r\n\ It\ is\ removed\ from\ the\ field.\r\n
+numComments=5

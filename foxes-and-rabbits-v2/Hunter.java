@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Iterator;
 import java.util.List;
 /**
  * Write a description of class Hunter here.
@@ -43,10 +44,6 @@ public class Hunter extends Actor
             if(newLocation != null) {
                 setLocation(newLocation);
             }
-            else {
-                // Overcrowding.
-                setDead();
-            }
         }
     }
     
@@ -90,7 +87,7 @@ public class Hunter extends Actor
                 }
             }
             if(animal instanceof Wolf) {
-                Wolf wolf = (wolf) animal;
+                Wolf wolf = (Wolf) animal;
                 if(wolf.isAlive()) { 
                     wolf.setDead();
                     return where;
@@ -98,5 +95,9 @@ public class Hunter extends Actor
             }
         }
         return null;
+    }
+    
+    public boolean isAlive(){
+        return true;
     }
 }

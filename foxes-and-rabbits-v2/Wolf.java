@@ -63,7 +63,7 @@ public class Wolf extends Animal
      * @param field The field currently occupied.
      * @param newwolfes A list to add newly born wolfes to.
      */
-    public void act(List<Animal> newwolfes)
+    public void act(List<Actor> newwolfes)
     {
         incrementAge();
         incrementHunger();
@@ -150,7 +150,7 @@ public class Wolf extends Animal
      * New births will be made into free adjacent locations.
      * @param newwolfes A list to add newly born wolfes to.
      */
-    private void giveBirth(List<Animal> newwolfes)
+    private void giveBirth(List<Actor> newwolfes)
     {
         // New wolfes are born into adjacent locations.
         // Get a list of adjacent free locations.
