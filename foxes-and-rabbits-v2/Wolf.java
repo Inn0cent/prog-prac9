@@ -16,7 +16,7 @@ public class Wolf extends Animal
     // The age at which a wolf can start to breed.
     private static final int BREEDING_AGE = 10;
     // The age to which a wolf can live.
-    private static final int MAX_AGE = 40;
+    private static final int MAX_AGE = 50;
     // The likelihood of a wolf breeding.
     private static final double BREEDING_PROBABILITY = 0.05;
     // The maximum number of births.
